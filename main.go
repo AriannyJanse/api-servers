@@ -23,5 +23,5 @@ func main() {
 	}
 	models.Init()
 	fmt.Println("Connection started on port:", port)
-	log.Fatal(fasthttp.ListenAndServe(":"+port, s.Router().Handler))
+	log.Fatal(fasthttp.ListenAndServe(":"+port, server.CORS(s.Router().Handler)))
 }
