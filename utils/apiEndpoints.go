@@ -27,7 +27,6 @@ type Response struct {
 }
 
 func GetApiEndpoints(domain string) ([]*ApiEndpoint, bool) {
-	fmt.Println("Statirng GetApiEndpoints")
 	apiEndpoints := make([]*ApiEndpoint, 0)
 	dataEndpoints := getEndpointsAndStatus(domain)
 
@@ -42,10 +41,8 @@ func GetApiEndpoints(domain string) ([]*ApiEndpoint, bool) {
 			}
 			apiEndpoints = append(apiEndpoints, &apiEndpoint)
 		}
-		fmt.Println("Ending GetApiEndpoints")
 		return apiEndpoints, false
 	}
-	fmt.Println("Ending GetApiEndpoints")
 	return nil, true
 }
 

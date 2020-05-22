@@ -15,7 +15,6 @@ type ApiServer struct {
 }
 
 func GetApiServerByHostname(domain string) *ApiServer {
-	fmt.Println("Starting GetApiServerByHostname")
 	servers, status := GetApiEndpoints(domain)
 
 	if !status {
@@ -25,11 +24,9 @@ func GetApiServerByHostname(domain string) *ApiServer {
 			Title:   getTitle(domain),
 			IsDown:  status,
 		}
-		fmt.Println("Ending GetApiServerByHostname")
 		return apiServer
 	} else {
 		fmt.Println("Cannot get server, status: ", status)
-		fmt.Println("Ending GetApiServerByHostname")
 		return nil
 	}
 }

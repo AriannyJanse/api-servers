@@ -32,7 +32,7 @@ func New() Server {
 
 var (
 	corsAllowHeaders     = "authorization"
-	corsAllowMethods     = "HEAD,GET,POST,PUT,DELETE,OPTIONS"
+	corsAllowMethods     = "HEAD,GET"
 	corsAllowOrigin      = "*"
 	corsAllowCredentials = "true"
 )

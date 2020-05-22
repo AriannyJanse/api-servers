@@ -67,7 +67,6 @@ func GetServersHostnames() []string {
 
 	defer rows.Close()
 	for rows.Next() {
-		//var server Server
 		var hostname string
 		if err := rows.Scan(&hostname); err != nil {
 			fmt.Println(err)
@@ -147,7 +146,6 @@ func (server *Server) ServerIsChange(serverAPI *u.ApiServer) map[string]interfac
 		//Do something
 	}
 	if len(server.Servers) != len(serverAPI.Servers) {
-		fmt.Println("server: ", len(server.Servers), "serverAPI: ", len(serverAPI.Servers))
 		isChange = u.Message(true, "there was a change on servers len")
 	} else {
 		gradesforMin := []string{}
@@ -157,13 +155,7 @@ func (server *Server) ServerIsChange(serverAPI *u.ApiServer) map[string]interfac
 				//Do something
 			}
 			if serverEndpoint.Grade != serverAPI.Servers[i].Grade {
-				fmt.Println("server:", serverEndpoint.Grade, "serverApi: ", serverAPI.Servers[i].Grade, i)
 				isChange = u.Message(true, "grade changed")
-
-				if i == (len(server.Servers) - 1) {
-					isChange["grade"] = getGrade(gradesforMin)
-					isChange["previousGrade"] = getGrade(gradesforPrev)
-				}
 			}
 			if serverEndpoint.Country != serverAPI.Servers[i].Country {
 				//Do something
@@ -173,14 +165,15 @@ func (server *Server) ServerIsChange(serverAPI *u.ApiServer) map[string]interfac
 			}
 			gradesforMin = append(gradesforMin, serverAPI.Servers[i].Grade)
 			gradesforPrev = append(gradesforPrev, serverEndpoint.Grade)
-			fmt.Println("min:", gradesforMin, "prev:", gradesforPrev)
+			if i == (len(server.Servers) - 1) {
+				isChange["grade"] = getGrade(gradesforMin)
+				isChange["previousGrade"] = getGrade(gradesforPrev)
+			}
 		}
 	}
 	if isChange == nil {
 		isChange = u.Message(false, "Servers doesnt change")
 	}
-	fmt.Println("grade: ", isChange["grade"], "prev: ", isChange["previousGrade"])
-	fmt.Println("saliendo changes: ", isChange)
 	return isChange
 }
 

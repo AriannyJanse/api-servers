@@ -21,11 +21,18 @@
             v-for="server in servers.data.Servers"
             :key="server"
           >
-            Servers detail: { <br>
+            Server detail: { <br>
               Address: {{ server.address }} <br>
               SSL grade: {{ server.ssl_grade }} <br>
               Country: {{ server.country }} <br>
               Owner: {{ server.owner }}
+            } <br><br>
+          </span>
+          <span v-if="servers.data.ServerChange">
+            Server Changes: { <br>
+              Servers changed: {{ servers.data.ServerChange.servers_changed }} <br>
+              SSL grade: {{ servers.data.ServerChange.ssl_grade }} <br>
+              Previous SSL grade: {{ servers.data.ServerChange.previous_ssl_grade }} <br>
             } <br><br>
           </span>
 
