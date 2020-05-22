@@ -1,6 +1,6 @@
 # API Servers BE
 
-This API is and example.
+This API is an example.
 
 ## Installation
 
@@ -20,8 +20,8 @@ PORT: The port where this API will run.
 
 
 ```.env
-DB_NAME = prueba_db
-DB_USER = <bd_user>
+DB_NAME = <db_name>
+DB_USER = <db_user>
 DB_TYPE = postgres
 DB_HOST = <your_host>
 DB_PROT = <your_host_port>
