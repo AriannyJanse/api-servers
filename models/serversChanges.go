@@ -16,12 +16,6 @@ func (serverChanges *ServersChanges) validateWithIDServer(idServer uint) (map[st
 	if idServer < 0 {
 		return u.Message(false, "ID should be on the payload"), false
 	}
-	if serverChanges.Grade == "" {
-		return u.Message(false, "Grade should be on the payload"), false
-	}
-	if serverChanges.PreviousGrade == "" {
-		return u.Message(false, "Previous Grade should be on the payload"), false
-	}
 
 	return u.Message(true, "The serverChanges data is valid"), true
 }

@@ -135,7 +135,8 @@ func GetSeverIDAndCheckIfExistByHostname(hostname string) (uint, bool) {
 }
 
 func (server *Server) ServerIsChange(serverAPI *u.ApiServer) map[string]interface{} {
-	var isChange map[string]interface{}
+	var isChange = u.Message(false, "Servers doesnt change")
+
 	if server.Logo != serverAPI.Logo {
 		//Do something
 	}
@@ -165,24 +166,25 @@ func (server *Server) ServerIsChange(serverAPI *u.ApiServer) map[string]interfac
 			}
 			gradesforMin = append(gradesforMin, serverAPI.Servers[i].Grade)
 			gradesforPrev = append(gradesforPrev, serverEndpoint.Grade)
-			if i == (len(server.Servers) - 1) {
+			if i == (len(server.Servers)-1) && isChange["status"] != false {
 				isChange["grade"] = getGrade(gradesforMin)
 				isChange["previousGrade"] = getGrade(gradesforPrev)
 			}
 		}
-	}
-	if isChange == nil {
-		isChange = u.Message(false, "Servers doesnt change")
+		fmt.Println("grades min: ", gradesforMin)
+		fmt.Println("grades prev: ", gradesforPrev)
 	}
 	return isChange
 }
 
 func getGrade(grades []string) string {
 	var minGrade string
-	sort.Slice(grades, func(i, j int) bool {
-		return grades[i] < grades[j]
-	})
-	minGrade = grades[len(grades)-1]
+	if len(grades) > 0 {
+		sort.Slice(grades, func(i, j int) bool {
+			return grades[i] < grades[j]
+		})
+		minGrade = grades[len(grades)-1]
+	}
 	return minGrade
 }
 

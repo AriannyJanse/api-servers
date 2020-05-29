@@ -24,7 +24,7 @@ DB_NAME = <db_name>
 DB_USER = <db_user>
 DB_TYPE = postgres
 DB_HOST = <your_host>
-DB_PROT = <your_host_port>
+DB_PORT = <your_host_port>
 PORT    = <an_available_port_for_the_api>
 ```
 
