@@ -19,11 +19,11 @@ func (serverEndpoint *ServerEndpoint) validate() (map[string]interface{}, bool) 
 		return u.Message(false, "Address should be on the payload"), false
 	}
 
-	if serverEndpoint.Country <= "" {
+	if serverEndpoint.Country == "" {
 		return u.Message(false, "Country should be on the payload"), false
 	}
 
-	if serverEndpoint.Owner <= "" {
+	if serverEndpoint.Owner == "" {
 		return u.Message(false, "Owner should be on the payload"), false
 	}
 

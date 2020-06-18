@@ -12,9 +12,9 @@ import (
 var db *sql.DB
 
 func Init() {
-	err := godotenv.Load()
+	err := godotenv.Load("../.env")
 	if err != nil {
-		fmt.Print(err)
+		fmt.Println("error: ", err)
 	}
 
 	username := os.Getenv("DB_USER")
